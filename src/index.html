@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/drag.css">
+    <script src="js/thirdParty/jquery-3.1.1.js"></script>
+    <script src="js/drag.js"></script>
+    <script src="js/properties.js"></script>
+</head>
+<body>
+
+<div class="dragPanel">
+    <button class="draggable startingPosition">Button</button>
+    <input class="draggable startingPosition" size="4" value="Input"/>
+    <select class="draggable startingPosition">
+        <option>Combobox</option>
+    </select>
+
+    <select multiple class="draggable startingPosition">
+        <option>Listbox</option>
+    </select>
+
+    <textarea class="draggable startingPosition">TextArea</textarea>
+</div>
+
+<div class="properties">
+    <div>
+        <label for="height">Height:</label>
+        <br/>
+        <input id="height" size="5"/>
+    </div>
+    <div>
+        <label for="width">Width:</label>
+        <br/>
+        <input id="width" size="5"/>
+    </div>
+</div>
+
+</body>
+</html>

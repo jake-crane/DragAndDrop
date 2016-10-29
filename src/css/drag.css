@@ -1,0 +1,52 @@
+.draggable {
+    position: absolute;
+}
+
+.dragPanel {
+    float: left;
+    height: 160px;
+    width: 100px;
+    border-style: solid;
+    z-index: 5;
+}
+
+button.startingPosition {
+    top: 15px;
+    left: 15px;
+}
+
+input.startingPosition {
+    top: 45px;
+    left: 15px;
+}
+
+select.startingPosition {
+    top: 75px;
+    left: 15px;
+    width: 90px;
+}
+
+select[multiple].startingPosition {
+    top: 105px;
+    left: 15px;
+    height: 20px;
+    width: 80px;
+}
+
+textarea.startingPosition {
+    top: 135px;
+    left: 15px;
+    height: 20px;
+    width: 80px;
+}
+
+.selected {
+    border-style: solid;
+    border-color: cyan;
+}
+
+.properties {
+    float: right;
+    border-style: solid;
+    padding: 5px;
+}
