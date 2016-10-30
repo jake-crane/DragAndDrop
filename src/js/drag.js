@@ -7,18 +7,59 @@ $(function () {
         selected: 'selected'
     };
 
-    function selectElement(e)
+    function getHeight($element) {
+        return parseInt($element.css('height').replace("px", ""));
+    }
+
+    function getWidth($element) {
+        return parseInt($element.css('width').replace("px", ""));
+    }
+
+    function getTop($element) {
+        return parseInt($element.css('top').replace("px", ""));
+    }
+
+    function getLeft($element) {
+        return parseInt($element.css('left').replace("px", ""));
+    }
+
+    function setHeight($element, newHeight) {
+        return $element.css('height', newHeight + 'px');
+    }
+
+    function setWidth($element, newWidth) {
+        return $element.css('width', newWidth + 'px');
+    }
+
+    function setTop($element, newTop) {
+        return $element.css('top', newTop + 'px');
+    }
+
+    function setLeft($element, newLeft) {
+        return $element.css('left', newLeft + 'px');
+    }
+
+    function deleteElement(e)
     {
+        $('.deleteable').remove();
+        $('.selected').remove();
+    }
+
+    function selectElement(e) {
         var $this = $(this);
         $this.toggleClass(classes.selected);
         var $height = $('#height');
         var $width = $('#width');
         $height.val($this.css('height').replace("px", ""));
         $width.val($this.css('width').replace("px", ""));
+        var $deleteIcon = $('<span class="material-icons deleteable"></span>');
+        $deleteIcon.click(deleteElement);
+        setLeft($deleteIcon,(getLeft($this) + getWidth($this)) - 6);
+        setTop($deleteIcon, (getTop($this) - getHeight($deleteIcon) / 2) - 6);
+        $('.dragPanel').append($deleteIcon);
     }
 
-    function replaceOriginal($original)
-    {
+    function replaceOriginal($original) {
         var $clone = $original.clone();
         $clone.attr('style', '');
         $clone.mousedown(startDrag);
@@ -29,6 +70,7 @@ $(function () {
 
     function startDrag(e) {
         e.preventDefault();
+        $('.deleteable').remove();
         var $this = $(this);
         if ($this.hasClass(classes.startingPosition))
             replaceOriginal($this);
@@ -43,7 +85,7 @@ $(function () {
         var $this = $(this);
         $this.removeClass(classes.moving);
         $this.removeClass(classes.startingPosition);
-        $draggables.click(selectElement);
+        $('.draggable').click(selectElement);
     }
 
     function drag(e) {

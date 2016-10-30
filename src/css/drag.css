@@ -50,3 +50,32 @@ textarea.startingPosition {
     border-style: solid;
     padding: 5px;
 }
+
+.deleteable {
+    color: red;
+    position: absolute;
+    z-index: 10;
+    font-size: 12px !important;
+}
+
+.deleteable::before {
+    content: 'cancel';
+}
+
+.selected,.deleteable {
+    animation: shake 0.3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation-iteration-count:infinite;
+}
+
+@keyframes shake {
+    50% {
+        transform: rotate(2deg);
+    }
+
+    100% {
+        transform: rotate(-2deg);
+    }
+}
