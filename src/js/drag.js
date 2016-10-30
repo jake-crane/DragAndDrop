@@ -39,8 +39,7 @@ $(function () {
         return $element.css('left', newLeft + 'px');
     }
 
-    function deleteElement(e)
-    {
+    function deleteElement(e) {
         $(this).remove();
         $('.deleteable').remove();
         $('.selected').remove();
@@ -50,16 +49,21 @@ $(function () {
         if (e.which == 3) //right click
             return;
         var $this = $(this);
-        $this.toggleClass(classes.selected);
-        var $height = $('#height');
-        var $width = $('#width');
-        $height.val($this.css('height').replace("px", ""));
-        $width.val($this.css('width').replace("px", ""));
-        var $deleteIcon = $('<span class="material-icons deleteable"></span>');
-        $deleteIcon.click(deleteElement);
-        setLeft($deleteIcon,(getLeft($this) + getWidth($this)) - 6);
-        setTop($deleteIcon, (getTop($this) - getHeight($deleteIcon) / 2) - 6);
-        $('.dragPanel').append($deleteIcon);
+        if ($this.hasClass(classes.selected)) {
+            $this.removeClass(classes.selected);
+            $('.deleteable').remove();
+        } else {
+            $this.addClass(classes.selected);
+            var $height = $('#height');
+            var $width = $('#width');
+            $height.val($this.css('height').replace("px", ""));
+            $width.val($this.css('width').replace("px", ""));
+            var $deleteIcon = $('<span class="material-icons deleteable"></span>');
+            $deleteIcon.click(deleteElement);
+            setLeft($deleteIcon, (getLeft($this) + getWidth($this)) - 6);
+            setTop($deleteIcon, (getTop($this) - getHeight($deleteIcon) / 2) - 6);
+            $('.dragPanel').append($deleteIcon);
+        }
     }
 
     function replaceOriginal($original) {
@@ -86,8 +90,7 @@ $(function () {
         $draggables.off('click');
     }
 
-    function handleKeyPress(e)
-    {
+    function handleKeyPress(e) {
         if (e.keyCode === 46)
             deleteElement(e);
     }
