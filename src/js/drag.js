@@ -46,6 +46,8 @@ $(function () {
     }
 
     function selectElement(e) {
+        if (e.which == 3) //right click
+            return;
         var $this = $(this);
         $this.toggleClass(classes.selected);
         var $height = $('#height');
@@ -70,6 +72,8 @@ $(function () {
 
     function startDrag(e) {
         e.preventDefault();
+        if (e.which == 3) //right click
+            return;
         $('.deleteable').remove();
         var $this = $(this);
         if ($this.hasClass(classes.startingPosition))
@@ -100,6 +104,10 @@ $(function () {
     $draggables.mousedown(startDrag);
     $draggables.mouseup(stopDrag);
     $draggables.mousemove(drag);
+
+    window.drag = {
+        deleteElement: deleteElement
+    };
 
 });
 
