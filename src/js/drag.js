@@ -41,6 +41,7 @@ $(function () {
 
     function deleteElement(e)
     {
+        $(this).remove();
         $('.deleteable').remove();
         $('.selected').remove();
     }
@@ -71,7 +72,7 @@ $(function () {
     }
 
     function startDrag(e) {
-        e.preventDefault();
+        //e.preventDefault();
         if (e.which == 3) //right click
             return;
         $('.deleteable').remove();
@@ -85,11 +86,21 @@ $(function () {
         $draggables.off('click');
     }
 
+    function handleKeyPress(e)
+    {
+        if (e.keyCode === 46)
+            deleteElement(e);
+    }
+
     function stopDrag(e) {
         var $this = $(this);
         $this.removeClass(classes.moving);
         $this.removeClass(classes.startingPosition);
-        $('.draggable').click(selectElement);
+        var $draggables = $('.draggable');
+        $draggables.click(selectElement);
+        $draggables.keypress(handleKeyPress);
+        $draggables.keydown(handleKeyPress);
+        $draggables.keyup(handleKeyPress);
     }
 
     function drag(e) {

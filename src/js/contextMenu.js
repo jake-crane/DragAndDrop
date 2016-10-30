@@ -3,7 +3,7 @@ $(function () {
         selector: '.draggable',
         callback: function (key, options) {
             if (key === 'delete') {
-                drag.deleteElement();
+                drag.deleteElement.apply(this);
             } else {
 
                 var m = "clicked: " + key;
