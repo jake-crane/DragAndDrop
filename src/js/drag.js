@@ -43,6 +43,8 @@ $(function () {
         $(this).remove();
         $('.deleteable').remove();
         $('.selected').remove();
+        $('#width').val('');
+        $('#height').val('');
     }
 
     function selectElement(e) {
